@@ -2,6 +2,14 @@
 
 You are reading a **generic engineering handbook**. It is not the project you are working on (unless the user is editing this handbook itself). Use it as a decision aid for whatever project you *are* working on.
 
+## If you were pointed here from another project
+
+You are probably reading this from a clone, submodule (e.g. `.handbook/`), or URL while working in a **different** repository. That's the intended use:
+- Treat paths in this handbook as relative to the handbook's root.
+- Read only the sections the task needs (see the routing table at the bottom) — don't load everything.
+- Write ADRs, profiles, and specs into the **target project**, never into this handbook.
+- Setup options for humans: [USAGE.md](USAGE.md).
+
 ## Precedence
 
 1. The user's explicit instructions in the current session.

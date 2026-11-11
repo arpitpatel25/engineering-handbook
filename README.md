@@ -1,5 +1,7 @@
 # Engineering Handbook
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A project-agnostic decision handbook for building production-grade software — written to be read by **both humans and AI coding agents**.
 
 It is not a framework, a stack, or a set of mandates. It is a structured map of **everything worth considering** when building software that should survive contact with real users, real load, real attackers, real auditors, and real maintainers. Each area is laid out as questions, options, trade-offs, red flags, and evidence of done — so whoever is building (person or agent) can make a deliberate, recorded decision instead of an accidental one.
@@ -23,6 +25,7 @@ It is not a framework, a stack, or a set of mandates. It is a structured map of 
 | [`PRINCIPLES.md`](PRINCIPLES.md) | The small set of cross-cutting principles that everything else derives from. |
 | [`handbook/`](handbook/) | Deep-dive guides, one per area (architecture, data, security, reliability, …). |
 | [`checklists/`](checklists/) | Condensed, tickable checklists by project maturity stage and by activity (design review, PR review, launch). |
+| [`USAGE.md`](USAGE.md) | How to wire this handbook into any project or agent. |
 | [`templates/`](templates/) | Drop-in templates: ADR, NFR sheet, feature spec, threat model, runbook, postmortem, project `AGENTS.md`, PR template, etc. |
 
 ### Handbook index
@@ -56,16 +59,28 @@ It is not a framework, a stack, or a set of mandates. It is a structured map of 
 | 24 | Project-type addenda (libraries, CLIs, mobile, data/ML, desktop, embedded, games, internal tools) | [handbook/24-project-type-addenda.md](handbook/24-project-type-addenda.md) |
 | 25 | Glossary of patterns & terms | [handbook/25-glossary.md](handbook/25-glossary.md) |
 
-## Using it from another project
+## Quick start
 
-Pick whichever fits:
+**For an AI agent, one-off** — paste into any session:
 
-1. **Reference it globally.** Clone it somewhere stable (e.g. `~/engineering-handbook`) and add one line to your global agent instructions (e.g. `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`):
-   ```
-   For any software design, architecture, or quality decision, consult ~/engineering-handbook/AGENTS.md first and follow its process.
-   ```
-2. **Reference it per project.** Copy [`templates/project-AGENTS.md`](templates/project-AGENTS.md) into the target repo as `AGENTS.md` / `CLAUDE.md` and fill it in.
-3. **Vendor it.** Add as a git submodule (`git submodule add <url> .handbook`) so agents in CI/cloud sandboxes can read it.
+```text
+Before making design, architecture, or quality decisions, read the engineering handbook at
+https://github.com/arpitpatel25/engineering-handbook — start with AGENTS.md and follow its process.
+```
+
+**For a project** — add it as a submodule and point your project's `AGENTS.md` at it:
+
+```bash
+git submodule add https://github.com/arpitpatel25/engineering-handbook .handbook
+```
+
+```markdown
+## Engineering handbook
+For design, architecture, and quality decisions, consult `.handbook/AGENTS.md` and follow its process.
+This file, the project's ADRs, and existing code conventions take precedence over it.
+```
+
+More setups (vendored copy, machine-wide, new-project bootstrap, prompts): **[USAGE.md](USAGE.md)**.
 
 ## Stance
 
@@ -73,3 +88,7 @@ Pick whichever fits:
 - **Proportionality.** A weekend prototype and a bank's ledger deserve different rigor. See [00 — Project profiling](handbook/00-project-profiling.md).
 - **Deviation is allowed — silence is not.** Rejecting a recommendation is fine; doing so without recording why is the failure mode.
 - **Living document.** When a project teaches a lesson this handbook lacked, add it here.
+
+## License
+
+[MIT](LICENSE) — use, adapt, and redistribute freely. Contributions welcome via pull request.
